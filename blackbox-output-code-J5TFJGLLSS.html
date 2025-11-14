@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض تقديمي - السلوك التنظيمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a1a, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #6a11cb;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #6a11cb, #2575fc, transparent);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #6a11cb;
+            text-shadow: 0 0 15px rgba(106, 17, 203, 0.7);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: #2575fc;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #2575fc, transparent);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+            color: #8a2be2;
+        }
+        
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #e6e6ff;
+        }
+        
+        .logo-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(13, 13, 35, 0.6);
+            border-radius: 10px;
+            border: 1px solid #2575fc;
+        }
+        
+        .logo-right {
+            text-align: right;
+            flex: 1;
+        }
+        
+        .logo-center {
+            text-align: center;
+            flex: 2;
+        }
+        
+        .university {
+            font-weight: 700;
+            color: #6a11cb;
+            font-size: 1.4rem;
+        }
+        
+        .students {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .student {
+            padding: 12px;
+            background: rgba(37, 117, 252, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        .student:hover {
+            transform: translateY(-5px);
+            background: rgba(106, 17, 203, 0.2);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        .content-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(13, 13, 35, 0.6);
+            border-radius: 15px;
+            border-left: 5px solid #6a11cb;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .content-card {
+            background: rgba(37, 117, 252, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+            background: rgba(106, 17, 203, 0.15);
+        }
+        
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #6a11cb;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(106, 17, 203, 0.3);
+            font-size: 0.9rem;
+            color: #a0a0ff;
+        }
+        
+        .animated-text {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            background: rgba(13, 13, 35, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .slide-btn {
+            padding: 10px 20px;
+            background: rgba(37, 117, 252, 0.2);
+            border: 1px solid rgba(106, 17, 203, 0.3);
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slide-btn:hover, .slide-btn.active-btn {
+            background: rgba(106, 17, 203, 0.3);
+            box-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .concept-card {
+            background: rgba(13, 13, 35, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid #6a11cb;
+            transition: transform 0.3s;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-right: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        li::before {
+            content: "•";
+            color: #6a11cb;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-right, .logo-center {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .content-grid, .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="animated-text">عرض تقديمي: السلوك التنظيمي والاتجاهات الوظيفية</h1>
+            <p class="animated-text">مشروع مادة السلوك التنظيمي - كلية إدارة الأعمال</p>
+        </div>
+        
+        <div class="logo-section">
+            <div class="logo-right">
+                <p class="university">المملكة العربية السعودية</p>
+                <p>جامعة طيبة</p>
+                <p>كلية إدارة الأعمال</p>
+                <p>قسم التمويل والاقتصاد</p>
+            </div>
+            
+            <div class="logo-center">
+                <h2>مشروع السلوك التنظيمي</h2>
+                <p>مقدم الى د. صفيات علي</p>
+            </div>
+        </div>
+        
+        <h2>عمل الطالبات:</h2>
+        <div class="students">
+            <div class="student animated-text">
+                <i class="fas fa-user-graduate"></i> رواء التميمي | 4454776
+            </div>
+            <div class="student animated-text">
+                <i class="fas fa-user-graduate"></i> أروى البركاني | 4455044
+            </div>
+            <div class="student animated-text">
+                <i class="fas fa-user-graduate"></i> رانية السناني | 4452600
+            </div>
+            <div class="student animated-text">
+                <i class="fas fa-user-graduate"></i> ازهار العوفي | 4454299
+            </div>
+            <div class="student animated-text">
+                <i class="fas fa-user-graduate"></i> ليان الحجيلي | 4456288
+            </div>
+            <div class="student animated-text">
+                <i class="fas fa-user-graduate"></i> هند الجهني | 4453290
+            </div>
+        </div>
+        
+        <div class="content-section animated-text">
+            <h2>مقدمة</h2>
+            <p>يعد فهم السلوك البشري داخل المؤسسات مفتاحًا رئيسيًا لتحقيق النجاح التنظيمي. حيث تشكل الاتجاهات الأساس الذي يُبنى عليه هذا السلوك، فهي تنعكس بشكل مباشر على أداء الأفراد ورضاهم والتزامهم. يهدف هذا العرض إلى استكشاف مفهوم الاتجاهات ومكوناتها وتأثيرها على السلوك الوظيفي، مدعومًا بدراسة تطبيقية على بيئة عمل حقيقية.</p>
+        </div>
+        
+        <h2>محتويات العرض</h2>
+        <div class="content-grid">
+            <div class="content-card animated-text">
+                <div class="icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>الجانب النظري</h3>
+                <p>مفهوم الاتجاهات وأهميتها، مكونات الاتجاه، العوامل المؤثرة في تكوين الاتجاهات، العلاقة بين الاتجاهات والسلوك الوظيفي، أساليب قياس الاتجاهات.</p>
+            </div>
+            
+            <div class="content-card animated-text">
+                <div class="icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>الجانب التطبيقي</h3>
+                <p>دراسة حالة على شركة سابك، أبرز الاتجاهات الحديثة في سابك، أثر الاتجاهات على الموظفين، التحديات والنتائج.</p>
+            </div>
+            
+            <div class="content-card animated-text">
+                <div class="icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3>النتائج والتوصيات</h3>
+                <p>أهم النتائج المستخلصة من الدراسة، والتوصيات المقترحة لتحسين الاتجاهات الوظيفية في المؤسسات.</p>
+            </div>
+        </div>
+        
+        <!-- شرائح العرض -->
+        <div class="slide-nav">
+            <button class="slide-btn active-btn" onclick="showSlide(0)">1</button>
+            <button class="slide-btn" onclick="showSlide(1)">2</button>
+            <button class="slide-btn" onclick="showSlide(2)">3</button>
+            <button class="slide-btn" onclick="showSlide(3)">4</button>
+            <button class="slide-btn" onclick="showSlide(4)">5</button>
+            <button class="slide-btn" onclick="showSlide(5)">6</button>
+            <button class="slide-btn" onclick="showSlide(6)">7</button>
+        </div>
+        
+        <div class="slide active">
+            <h2>مفهوم الاتجاهات وأهميتها في السلوك التنظيمي</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>تعريف الاتجاهات</h3>
+                    <p>هي حالة ذهنية أو ميول نفسية ثابتة نسبيًا، تجعل الأفراد يستجيبون بطريقة محددة تجاه موضوع أو شخص أو موقف أو فكرة معينة. الاتجاهات تعكس تقييماتنا ومشاعرنا ومعتقداتنا حول مختلف جوانب الحياة المحيطة بنا.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>أهمية الاتجاهات</h3>
+                    <ul>
+                        <li>التأثير على السلوك: تشمل الاتجاهات تأثيراً مباشراً على سلوك الموظفين.</li>
+                        <li>التنبؤ بالسلوك: معرفة مديري المؤسسات لاتجاهات الموظفين تساعدهم على التنبؤ بتصرفاتهم.</li>
+                        <li>فهم الدوافع: تلعب الاتجاهات دوراً محورياً في تفسير دوافع الأفراد داخل المنظمة.</li>
+                        <li>تحسين الأداء: يمكن للمؤسسات تحسين بيئة العمل وزيادة رضا الموظفين.</li>
+                        <li>تعزيز الالتزام التنظيمي: تؤدي الاتجاهات الإيجابية إلى تعزيز ارتباط الموظفين بأهداف المؤسسة.</li>
+                        <li>إدارة التغيير: فهم اتجاهات الموظفين يُعد ضرورياً لتحقيق نجاح التحولات داخل المنظمة.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>مكونات الاتجاه</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>المكون الوجداني</h3>
+                    <p>يعكس المشاعر والانفعالات تجاه المنظمة مثل الانتماء والرضا والحب، ويحدد مدى الالتزام العاطفي للفرد تجاهها، مما يعزز ثبات الاتجاه.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>المكون المعرفي</h3>
+                    <p>يتعلق بإدراك الفرد لأهداف المنظمة وقيمها ومعاييرها، ويعكس معتقداته وتقييمه العقلي لهذه الجوانب، مما يشكل استجاباته ومواقفه تجاه المنظمة.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>المكون السلوكي</h3>
+                    <p>يظهر في الاستعداد للفعل ودعم مصالح المنظمة، مثل الرغبة في العمل أو المساهمة في تحقيق أهدافها، ويعكس سلوك الفرد بناءً على مشاعره ومعتقداته.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>العوامل المؤثرة في تكوين الاتجاهات</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>التجارب الشخصية</h3>
+                    <p>الخبرات السابقة التي يمر بها الشخص تلعب دورًا كبيرًا في بناء ميوله. الأوضاع المواتية أو غير المواتية تجاه ظرف معين تؤثر على كيفية تفاعله معه لاحقا.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>التنشئة الاجتماعية</h3>
+                    <p>الأسرة، الزملاء، والمؤسسات التعليمية تؤثر جميعها على صنع الميول. المبادئ والمعتقدات التي يتم استيعابها في مرحلة الطفولة تستمر في التأثير على التصرف في مراحل لاحقة.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>الثقافة</h3>
+                    <p>القيم الثقافية والمعايير الاجتماعية تلعب دورًا جوهريا في صياغة الميول. ثقافة المجتمع تؤثر على ما يُعتبر مقبولاً أو مرفوضا.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>الإعلام والتعليم</h3>
+                    <p>القنوات الإعلامية المتنوعة (المرئية، الشبكة العنكبوتية، الجرائد) يمكن أن تؤثر على الميول عبر المعلومات والمحتوى الذي تنشره. الدراسة تسهم في توسيع مدارك الأفراد وتعديل أفكارهم، مما يؤثر على توجهاتهم حيال قضايا مختلفة.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>العلاقة بين الاتجاهات والسلوك الوظيفي</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>المكون الوجداني وعلاقته بالسلوك الوظيفي</h3>
+                    <p>يمثل الجانب العاطفي للموظف تجاه عمله، ويعكس مشاعر الرضا أو الإحباط والتقدير أو الاستياء. هذه المشاعر تؤثر بشكل مباشر على سلوكه في العمل، فالموظف الذي يشعر بالرضا والحماس يميل إلى الالتزام والمبادرة والتعاون، بينما الذي يشعر بالإحباط أو الظلم يميل إلى الانسحاب والتأخير وتقليل الجهد.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>المكون المعرفي وعلاقته بالسلوك الوظيفي</h3>
+                    <p>يعبّر عن معتقدات الموظف وقناعاته تجاه عمله وزملائه وإدارته. فالمعتقدات الإيجابية مثل الإيمان بقيمة المهام وعدالة الإدارة تعزز الالتزام والابتكار، أما المعتقدات السلبية مثل الشعور بعدم العدالة أو أن العمل بلا قيمة فتؤدي إلى ضعف الدافعية وتراجع الأداء.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>المكون السلوكي وعلاقته بالسلوك الوظيفي</h3>
+                    <p>هو التطبيق العملي للمعتقدات والمشاعر في بيئة العمل. ويظهر في التزام الموظف، وتفاعله مع الزملاء، ومبادرته في حل المشكلات. الموظف الذي يؤمن بأهمية عمله ويشعر بالرضا يقدم أداءً عاليًا ويتعاون مع فريقه، بينما من يشعر بالإحباط أو الشك يتجنب المشاركة ويقل التزامه.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>أساليب قياس الاتجاهات</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>الاستبيانات (أسلوب مباشر)</h3>
+                    <p>الطريقة الأكثر استخداماً في المؤسسات. استبيانات الرضا الوظيفي باستخدام "مقياس ليكرت" لقياس الرضا عن الراتب، المدير، الزملاء، الترقيات، بيئة العمل. استبيانات الالتزام التنظيمي لقياس مدى ارتباط الموظف وولائه للمؤسسة.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>المقابلات الشخصية</h3>
+                    <p>تتيح فهماً أعمق لأسباب الاتجاهات. قد تكون فردية أو جماعية. تستغرق وقتاً أطول ومكلفة.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>ملاحظة السلوكيات (أسلوب غير مباشر)</h3>
+                    <p>مؤشر إيجابي (سلوك المواطنة التنظيمية): مساعدة الزملاء طوعاً، تقديم اقتراحات. مؤشر سلبي (السلوكيات الهدامة): التأخير المتكرر، التمارض، إضاعة الوقت.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>تحليل المؤشرات التنظيمية</h3>
+                    <p>تحليل البيانات والأرقام الفعلية للمؤسسة، تُعتبر الأرقام نتيجة لاتجاهات الموظفين. أمثلة: معدلات دوران الموظفين (ترك العمل)، معدلات الغياب، مستويات الإنتاجية وجودة العمل.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>دراسة حالة: شركة سابك</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>أبرز الاتجاهات الحديثة</h3>
+                    <ul>
+                        <li>التحول الرقمي: تطبيق الذكاء الاصطناعي وتحليل البيانات لتحسين الإنتاج والعمليات.</li>
+                        <li>الاستدامة: خفض الانبعاثات وتعزيز كفاءة استخدام الموارد.</li>
+                        <li>الابتكار: دعم البحث العلمي وتطوير الحلول التقنية الحديثة.</li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3>أثر الاتجاهات على الموظفين</h3>
+                    <ul>
+                        <li>برامج تدريبية رقمية لتطوير المهارات.</li>
+                        <li>أسلوب عمل مرن يعزز الإبداع والانتماء.</li>
+                        <li>ارتفاع مستوى الرضا والأداء العام.</li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3>التحديات</h3>
+                    <ul>
+                        <li>سرعة التطور التكنولوجي.</li>
+                        <li>الحاجة إلى تأهيل الكوادر الوطنية.</li>
+                        <li>ارتفاع تكاليف مشاريع الاستدامة، مع اعتبارها فرصًا للتحسين.</li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3>نصيحة ممثل سابك للطلاب</h3>
+                    <p>"طوّروا مهاراتكم الرقمية واللغوية والتحليلية، واهتموا بروح الابتكار وفهم قضايا الاستدامة، فهي مفاتيح النجاح في المستقبل."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>النتائج والتوصيات</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>النتائج</h3>
+                    <ul>
+                        <li>أهمية فهم الاتجاهات في التنبؤ بالسلوك الوظيفي</li>
+                        <li>تعدد العوامل المؤثرة في تشكيل الاتجاهات</li>
+                        <li>ارتباط الاتجاهات الحديثة في المؤسسات بالأداء والرضا</li>
+                        <li>المكونات الثلاثة للاتجاه تعمل بشكل مترابط</li>
+                        <li>الاتجاهات الوظيفية تنعكس مباشرة على مؤشرات الأداء</li>
+                        <li>الاتجاهات التنظيمية الحديثة تساهم في خلق بيئة عمل جاذبة</li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3>التوصيات</h3>
+                    <ul>
+                        <li>تعزيز قياس الاتجاهات داخل المؤسسات</li>
+                        <li>الاستثمار في بناء اتجاهات إيجابية</li>
+                        <li>مواكبة الاتجاهات الإدارية الحديثة</li>
+                        <li>دعم التواصل الفعّال بين الإدارة والموظفين</li>
+                        <li>تعزيز ثقافة الاستدامة والمسؤولية المؤسسية</li>
+                        <li>الاستثمار في تنمية المهارات الرقمية والتحليلية للموظفين</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h2>خاتمة</h2>
+            <div class="content-section">
+                <p>تشكل الاتجاهات العمود الفقري للسلوك التنظيمي، وهي ليست ثابتة بل قابلة للتشكيل والتطوير. إن فهم هذه الاتجاهات ومكوناتها والعوامل المؤثرة فيها يمنح المؤسسات خريطة طريق لتحقيق بيئة عمل محفزة وإنتاجية عالية. وكما رأينا في تطبيق "سابك"، فإن تبني الاتجاهات التنظيمية الحديثة ليس رفاهية، بل هو استثمار استراتيجي في رأس المال البشري، وهو أساس نجاح أي منظمة في ظل المتغيرات العالمية المتسارعة.</p>
+            </div>
+        </div>
+        
+        <center>
+            <button class="btn animated-text" onclick="startPresentation()">بدء العرض التقديمي <i class="fas fa-play"></i></button>
+        </center>
+        
+        <div class="footer animated-text">
+            <p>جامعة طيبة - كلية إدارة الأعمال - قسم التمويل والاقتصاد © 2023</p>
+        </div>
+    </div>
+
+    <script>
+        // تحريك العناصر عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animated-text');
+            
+            animatedElements.forEach((element, index) => {
+                gsap.to(element, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    ease: "power2.out"
+                });
+            });
+            
+            // تأثيرات عند التمرير
+            gsap.to(".container", {
+                opacity: 1,
+                duration: 1.5,
+                ease: "power2.inOut"
+            });
+        });
+        
+        // وظائف الشرائح
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideButtons = document.querySelectorAll('.slide-btn');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slideButtons.forEach(btn => btn.classList.remove('active-btn'));
+            
+            slides[n].classList.add('active');
+            slideButtons[n].classList.add('active-btn');
+            currentSlide = n;
+        }
+        
+        function startPresentation() {
+            // إخفاء العناصر الأخرى وإظهار الشريحة الأولى فقط
+            document.querySelector('.content-section').style.display = 'none';
+            document.querySelector('.content-grid').style.display = 'none';
+            document.querySelector('.btn').style.display = 'none';
+            
+            // إظهار شريحة التنقل والشرائح
+            document.querySelector('.slide-nav').style.display = 'flex';
+            showSlide(0);
+        }
+        
+        // التبديل بين الشرائح بالسهمين
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                showSlide((currentSlide + 1) % slides.length);
+            } else if (e.key === 'ArrowLeft') {
+                showSlide((currentSlide - 1 + slides.length) % slides.length);
+            }
+        });
+    </script>
+</body>
+</html>
